@@ -1,12 +1,17 @@
-name: config
+name: CI
+
 on:
- push:
-  branches:
-   -main
+  push:
+    branches:
+      - main
 
 jobs:
- build:
-   runs-on: ubuntu-lates
-   steps:
-     - name: run command
-       runs: echo test
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo "test"
