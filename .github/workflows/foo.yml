@@ -6,12 +6,21 @@ on:
       - main
 
 jobs:
-  build:
+  echo_name:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo "test"
+      - name: Echo
+        run: echo Ramtin
+  date:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Date
+        run: date
