@@ -43,10 +43,11 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            docker pull inoxr/devops-app:latest
-            docker stop devops-app || true
-            docker rm devops-app || true
-            docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
+              docker pull inoxr/devops-app:latest
+              docker stop devops-app || true
+              docker rm devops-app || true
+              docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
 
