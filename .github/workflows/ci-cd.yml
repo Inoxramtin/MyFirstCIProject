@@ -36,17 +36,15 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
-
-      - name: Deploy
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
-            docker stop devops-app || true
-            docker rm devops-app || true
-            docker run -d -p 3003:3003 --name devops-app ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
-
+          tags: inoxr/devops-app:latest
+      -name: deploy
+       uses: appleboy/ssh-action@v1.0.3
+       with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          docker pull inoxr/devops-app:latest
+          docker stop devops-app || true
+          docker rm devops-app || true
+          docker run -d -p 3003 --name devops-app inoxr/devops-app:latest
