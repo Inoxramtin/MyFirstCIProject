@@ -44,13 +44,12 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            sudo apt-get update && sudo apt-get install -y docker.io
+            sudo apt-get update
+            sudo apt-get install -y docker.io
             sudo systemctl start docker
-            docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-            docker pull inoxr/devops-app:latest
-            docker stop devops-app || true
-            docker rm devops-app || true
-            docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
+            sudo docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+            sudo docker pull inoxr/devops-app:latest
+            sudo docker stop devops-app || true
+            sudo docker rm devops-app || true
+            sudo docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
