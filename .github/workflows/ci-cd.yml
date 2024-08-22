@@ -48,8 +48,8 @@ jobs:
           script: |
             sudo apt-get update && sudo apt-get install -y docker.io
             sudo systemctl start docker
+            docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             docker pull inoxr/devops-app:latest
             docker stop devops-app || true
             docker rm devops-app || true
             docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
-
