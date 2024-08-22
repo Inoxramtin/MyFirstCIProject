@@ -38,7 +38,7 @@ jobs:
           push: true
           tags: inoxr/devops-app:latest
 
-            - name: Deploy
+      - name: Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -54,3 +54,4 @@ jobs:
             sudo docker stop devops-app || true
             sudo docker rm devops-app || true
             sudo docker run -d -p 3003:3003 --name devops-app inoxr/devops-app:latest
+
