@@ -23,7 +23,5 @@ jobs:
             
             -name: build docker image
               run: docker build -t devops-app
-   date:
-    runs-on: ubuntu-latest
 
  
