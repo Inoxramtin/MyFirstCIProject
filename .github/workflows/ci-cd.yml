@@ -43,7 +43,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull inoxr/devops-app:latest
             docker stop devops-app || true
