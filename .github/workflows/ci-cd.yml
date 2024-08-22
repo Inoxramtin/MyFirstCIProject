@@ -6,22 +6,21 @@ on:
       - main
 
 jobs:
-   build:
-       runs-on: ubuntu-latest
-       steps:
-           - name: Checkout repository
-              uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
 
-           - name: Setups Nodejs
-              uses: actions/setup-node@v4
-              with:
-                 node-version: 14
+      - name: Setup dependencies
+        run: npm install
 
-            -name: Setup dependencies
-              run: npm install
-            
-            -name: build docker image
-              run: docker build -t devops-app
+      - name: Build Docker image
+        run: docker build -t devops-app .
 
  
